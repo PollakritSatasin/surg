@@ -1,0 +1,30 @@
+# Configuration for instance segmentation training and inference
+
+model:
+  num_classes: 2  # Number of classes (including background)
+  pretrained: true
+  backbone: resnet50
+
+data:
+  train_root: ./data/train
+  train_annotations: ./data/train/annotations.json
+  val_root: ./data/val
+  val_annotations: ./data/val/annotations.json
+  augmentation: true
+
+training:
+  batch_size: 2
+  num_workers: 4
+  learning_rate: 0.005
+  momentum: 0.9
+  weight_decay: 0.0005
+  num_epochs: 10
+  device: auto  # 'auto', 'cuda', or 'cpu'
+  save_dir: ./checkpoints
+  log_dir: ./logs
+  save_interval: 1
+  print_freq: 10
+
+inference:
+  confidence_threshold: 0.5
+  device: auto
